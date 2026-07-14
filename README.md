@@ -89,4 +89,4 @@ Round 2 includes:
 ## Author
 
 Hafsa Akram
-BS Computer Science
+Internee at FlyRank AI
