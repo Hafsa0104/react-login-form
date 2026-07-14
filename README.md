@@ -1,38 +1,23 @@
-# React Login / Signup Form
+# React Login/Signup Form - Round 1
 
-## AI Workflow Assignment
+## Overview
+This is Round 1 of my AI Workflow assignment.
 
-This project demonstrates two different AI-assisted development workflows for implementing an authentication form in React.
+In this round, I used a single, simple AI prompt to generate a basic authentication interface without providing detailed requirements or constraints.
 
-### Features
+## Features
+- Login form
+- Signup form
+- Basic form validation
+- Image thumbnails
+- Password visibility toggle
 
-- Login
-- Signup
-- Forgot Password
-- Form Validation
-- LocalStorage Authentication
-- Password Visibility Toggle
-- Loading States
-- Accessibility Improvements
-- Responsive UI
+## Tech Stack
+- React
+- CSS
+- JavaScript
 
----
-
-## Branches
-
-### Round 1 (Vague Prompt)
-
-Branch:
-https://github.com/Hafsa0104/react-login-form/tree/workflow-round-1
-
-### Round 2 (Structured Prompt)
-
-Branch:
-https://github.com/Hafsa0104/react-login-form/tree/workflow-round-2
-
----
-
-## Run Locally
+## Run the Project
 
 Install dependencies:
 
@@ -46,32 +31,14 @@ Start the development server:
 npm start
 ```
 
-Open:
+Open your browser at:
 
-```
 http://localhost:3000
-```
 
----
+## Branch
 
-## Run Tests
+workflow-round-1
 
-```bash
-npm test -- --watchAll=false
-```
+## Notes
 
----
-
-## Technologies Used
-
-- React
-- JavaScript
-- CSS
-- HTML
-- LocalStorage
-
----
-
-## Author
-
-Hafsa Akram
+This version was created using a simple AI prompt with minimal guidance. It serves as the baseline for comparison with Round 2, where detailed prompts, planning, accessibility improvements, testing, and documentation were added.
