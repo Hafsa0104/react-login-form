@@ -7,162 +7,72 @@
 
 body {
   background: #f5f3f2;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
 /* MAIN WRAPPER */
+/* Fixed height applied to ALL states (Login / Signup / Forgot Password)
+   so both cards always render at the same size. */
 .auth-page {
   width: 800px;
-  height: 450px;
+  height: 560px;
   background: #fff;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  transition: width 0.3s ease, height 0.3s ease;
+}
+.auth-form a {
+    text-decoration: none;
+    color: #3c2711;
+    font-weight: 600;
 }
 
-.auth-page-signup {
-  width: 900px;
-  height: 590px;
+.auth-form a:hover {
+    text-decoration: none;
 }
-
 /* ================= LEFT FORM ================= */
 .auth-form {
   padding: 30px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
 }
 
 .auth-form h2 {
   font-size: 28px;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .auth-form p {
   font-size: 14px;
   color: #777;
-  margin-bottom: 24px;
-}
-
-/* FIELDS */
-.field {
-  margin-bottom: 16px;
-  text-align: left;
-}
-
-.field label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: #3c2711;
-  margin-bottom: 6px;
-  letter-spacing: 0.02em;
+  margin-bottom: 30px;
+  margin-top: 18px;
 }
 
 .auth-form input {
   width: 100%;
   padding: 14px;
+  margin-bottom: 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.auth-form input:focus {
-  outline: none;
-  border-color: #3c2711;
-  box-shadow: 0 0 0 3px rgba(60, 39, 17, 0.12);
-}
-
-.auth-form input.input-error {
-  border-color: #d64545;
-}
-
-.field-error {
-  display: block;
-  color: #d64545;
-  font-size: 12px;
-  margin-top: 6px;
-}
-
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-wrapper input {
-  padding-right: 60px;
-}
-
-.toggle-visibility {
-  position: absolute;
-  right: 12px;
-  background: none;
-  border: none;
-  color: #3c2711;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 4px 6px;
-}
-
-.toggle-visibility:hover {
-  text-decoration: underline;
-}
-
-/* LINKS */
-.forgot-link {
-  display: block;
-  font-size: 13px;
-  color: #777;
-  text-decoration: none;
-  margin-bottom: 8px;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
-}
-
-.switch-link {
-  display: block;
-  font-size: 13px;
-  color: #3c2711;
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 20px;
-}
-
-.switch-link:hover {
-  text-decoration: underline;
-}
-
-.small-text {
+.auth-buttons {
   margin-top: 20px;
-  font-size: 13px;
-  color: #777;
+  margin-bottom: 6px;
 }
 
-.small-text a {
-  color: #3c2711;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.small-text a:hover {
-  text-decoration: underline;
-}
-
-/* BUTTON */
-.submit-btn {
+/* Scoped to .auth-buttons (not a bare "button" selector) so this only
+   targets the actual Login / Signup / Reset Password submit buttons -
+   the thumbnail and password-toggle buttons must not inherit this look. */
+.auth-form button.auth-buttons {
   width: 100%;
   background: #3c2711;
   color: #fff;
@@ -172,100 +82,119 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
+  margin-top: 20px;
 }
 
-.submit-btn:hover:not(:disabled) {
+.auth-form button.auth-buttons:hover {
   background: #f0c040;
   color: #000;
 }
 
-.submit-btn:disabled {
-  opacity: 0.75;
-  cursor: not-allowed;
-}
-
-.spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.success-msg {
-  margin-top: 12px;
-  color: #2f8f4e;
+/* SMALL LINK TEXT */
+.small-text {
+  margin-top: 20px;
   font-size: 13px;
+}
+
+.small-text a {
+  color: #3c2711;
+  text-decoration: none;
   font-weight: 600;
-  text-align: center;
+}
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #3c2711;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: underline;
+}
+
+.link-button:hover {
+    opacity: 0.8;
+}
+/* ================= SHOW / HIDE PASSWORD ================= */
+.password-wrapper {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.password-wrapper input {
+  margin-bottom: 0;
+  padding-right: 42px;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ================= VALIDATION / FEEDBACK MESSAGES ================= */
+.error-text {
+  display: block;
+  color: #d93025;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.success-text {
+  display: block;
+  color: #2e7d32;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 /* ================= THUMBNAILS ================= */
 .thumb-list {
   display: flex;
   gap: 16px;
-  margin-top: 26px;
+  margin-top: 8px;
 }
 
 .thumb {
   cursor: pointer;
   text-align: center;
-  background: none;
-  border: none;
-  padding: 0;
 }
 
 .thumb img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-  opacity: 0.55;
-  transition: 0.25s;
+  object-fit: fill;
+  opacity: 0.5;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: 0.3s;
 }
 
 .thumb:hover img {
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .thumb.active img {
   opacity: 1;
-  box-shadow: 0 0 0 2px #3c2711;
-}
-
-.thumb span {
-  display: block;
-  height: 3px;
-  width: 0;
-  background: #3c2711;
-  margin-top: 6px;
-  transition: 0.3s;
-  border-radius: 2px;
-}
-
-.thumb.active span {
-  width: 100%;
+  border-color: #3c2711;
 }
 
 /* ================= RIGHT VISUAL ================= */
 .auth-visual {
   background: linear-gradient(135deg, #3c2711, #9a876f);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   perspective: 1500px;
 }
 
+/* IMAGE HOLDER */
 .visual-wrapper {
   width: 320px;
   height: 320px;
@@ -273,49 +202,121 @@ body {
   transform-style: preserve-3d;
 }
 
+/* BIG IMAGE */
 .visual-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
+  object-fit: fill;
   opacity: 0;
-  pointer-events: none;
   transform: rotateX(-90deg) translateY(-200px);
 }
 
+/* ACTIVE IMAGE */
 .visual-img.active {
   opacity: 1;
-  pointer-events: auto;
-  animation: rotateIn 0.7s ease forwards;
+  animation: rotateIn 0.9s ease forwards;
 }
 
+/* 3D ROTATION */
 @keyframes rotateIn {
-  0% { transform: rotateX(-90deg) translateY(-200px); opacity: 0; }
-  50% { transform: rotateX(20deg) translateY(20px); opacity: 1; }
-  100% { transform: rotateX(0deg) translateY(0); opacity: 1; }
-}
-
-.visual-caption {
-  margin-top: 20px;
-  color: #f5f3f2;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  0% {
+    transform: rotateX(-90deg) translateY(-200px);
+  }
+  50% {
+    transform: rotateX(20deg) translateY(20px);
+  }
+  100% {
+    transform: rotateX(0deg) translateY(0);
+  }
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .auth-page,
-  .auth-page-signup {
+  .auth-page {
     grid-template-columns: 1fr;
     height: auto;
-    width: 100%;
-    max-width: 420px;
   }
 
   .auth-visual {
     display: none;
+  }
+}
+
+/* ================================================================
+   UX / ACCESSIBILITY ADDITIONS
+   (thumbnail + password-toggle are now real <button> elements;
+   labels are now real <label> elements kept visually hidden so the
+   existing placeholder-driven look is unchanged)
+   ================================================================ */
+
+/* Visually hidden but still announced by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reset native <button> chrome so the thumbnails keep their original look
+   now that they are real buttons instead of clickable <div>s */
+.thumb {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  display: block;
+}
+
+/* Reset native <button> chrome so the password toggle keeps its original
+   look now that it is a real <button> instead of a clickable <span> */
+.toggle-eye {
+  border: none;
+  background: none;
+  padding: 0;
+  line-height: 0;
+}
+
+/* Visible keyboard focus ring, in the existing brown theme color, for every
+   interactive element (inputs, buttons, links, thumbnails, password toggle) */
+.auth-form input:focus-visible,
+.auth-form button:focus-visible,
+.auth-form a:focus-visible,
+.toggle-eye:focus-visible {
+  outline: 2px solid #3c2711;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.thumb:focus-visible {
+  outline: 2px solid #3c2711;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Disabled / loading submit button state */
+.auth-form button.auth-buttons[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-form button.auth-buttons[disabled]:hover {
+  background: #3c2711;
+  color: #fff;
+}
+
+/* Respect users who have asked for reduced motion: skip the 3D flip */
+@media (prefers-reduced-motion: reduce) {
+  .visual-img,
+  .visual-img.active {
+    animation: none;
+    transform: none;
+    transition: opacity 0.2s ease;
   }
 }
