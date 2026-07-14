@@ -660,7 +660,7 @@ export default function AuthForm() {
 
                         <p>
                             Already have an account?{' '}
-                            <button
+                            <button 
                                 type="button"
                                 className="link-button"
                                 onClick={goToLogin}

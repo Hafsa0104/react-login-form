@@ -109,7 +109,6 @@ body {
     color: #3c2711;
     cursor: pointer;
     font: inherit;
-    text-decoration: underline;
 }
 
 .link-button:hover {
