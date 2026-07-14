@@ -22,11 +22,29 @@ The updated authentication workflow was verified using React Testing Library. Au
 
 ## AI Mistakes I Caught
 
+### 1. Accessibility concers
+### 2. Not include Automated tests in first Implementation
+### 3. Mistakes in Forgot Password workflow
+### 4. UI Breakdown
+
 During Round 2, the AI-generated implementation still required review before it was ready. Initially, some interactive actions used `<a>` elements instead of semantic `<button>` elements, which caused accessibility concerns. I replaced them with buttons to improve keyboard accessibility and remove accessibility warnings.
 
 The first implementation also did not include automated tests. I requested React Testing Library test cases, verified them by running `npm test -- --watchAll=false`, and confirmed that all five tests passed successfully.
 
-I also refined the Forgot Password workflow through multiple iterations until it supported proper validation, password confirmation, navigation back to Login, and success messages.
+I also refined the Forgot Password workflow through multiple iterations until it supported proper validation, password confirmation, navigation back to Login, and success messages.   
+
+Also I myself see the mistakes in UI so i give prompt to AI that: 
+The latest changes broke the original UI. Keep all authentication, validation, accessibility, and loading improvements, but restore the original visual design exactly as it was.
+Specifically:
+
+* Restore the original appearance of the thumbnail gallery (same size, spacing, rounded corners, hover effect, and active state as before).
+* Restore the original appearance of the password fields and eye icon.
+* The eye toggle should remain a `<button>` for accessibility, but it must look exactly like the previous clickable icon (no brown background, no full width, no extra padding).
+* Only the main Login, Signup, and Reset Password submit buttons should use the large brown button styling.
+* Thumbnail buttons should visually match the previous `<div class="thumb">` design.
+* Do not change the layout, colors, spacing, or animations unless required to restore the previous UI.
+* Preserve all functionality (localStorage authentication, loading states, accessibility improvements, timeout cleanup, validation, etc.).
+* Do not rewrite the entire file. Only update the CSS and any minimal JSX needed to restore the original appearance.
 
 ## Round 1 vs Round 2 Comparison
 
