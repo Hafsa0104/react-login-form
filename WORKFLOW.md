@@ -1,60 +1,318 @@
-# Workflow Review
+# AI Workflow Comparison
 
 ## Overview
 
-The second round focused on extending the authentication interface by implementing a complete Forgot Password workflow while preserving the existing Login and Signup functionality. Before making any changes, the authentication component was reviewed to understand its state management, validation logic, and navigation between forms. This planning helped ensure that the new feature integrated smoothly without affecting existing behavior.
+This assignment compares two different AI-assisted development workflows while building the same React authentication interface.
 
-## Correctness
+- **Round 1** was created using a single, vague AI prompt with minimal guidance.
+- **Round 2** was created using a detailed prompt, implementation planning, constraints, verification, testing, and multiple review iterations.
 
-The Forgot Password workflow introduces a dedicated Reset Password form that users can access from the Login screen. The form validates the email address, requires both a new password and confirmation password, and checks that the two passwords match before allowing submission. Navigation between Login, Signup, and Reset Password views works correctly, allowing users to move between forms without breaking the application flow. Existing login and signup functionality remains unchanged.
+The goal was to compare the quality of the generated code, UI consistency, accessibility, correctness, maintainability, and the amount of manual review required.
 
-## Accessibility
+---
 
-Accessibility improvements were made by replacing interactive `<a>` elements with `<button type="button">` where navigation actions were performed. This resolves accessibility warnings reported by ESLint and provides better keyboard accessibility and screen reader support. Form fields include labels, appropriate autocomplete attributes, and ARIA properties where applicable, improving the overall usability of the interface.
+# Round 1
 
-## Edge Cases
+## Workflow
 
-The implementation handles common edge cases such as empty required fields, invalid email formats, mismatched passwords, and incorrect form submissions. Password visibility toggles continue to function correctly across all authentication screens. Users can safely return from the Reset Password screen to the Login screen without losing the application's navigation state.
+Round 1 was generated using a single, simple prompt without providing detailed requirements, file references, implementation constraints, or verification steps.
 
-## Review Effort
+The generated application included:
 
-The updated authentication workflow was verified using React Testing Library. Automated tests confirm that the Login screen renders by default, users can switch to the Signup form, return to Login, open the Reset Password form, and navigate back successfully. All five test cases pass, providing confidence that the new functionality works correctly while maintaining the stability of the existing authentication system.
+- Login form
+- Signup form
+- Basic client-side validation
+- Password visibility toggle
 
-## AI Mistakes I Caught
+The implementation worked, but several usability, accessibility, and UI issues remained.
 
-### 1. Accessibility concers
-### 2. Not include Automated tests in first Implementation
-### 3. Mistakes in Forgot Password workflow
-### 4. UI Breakdown
+---
 
-During Round 2, the AI-generated implementation still required review before it was ready. Initially, some interactive actions used `<a>` elements instead of semantic `<button>` elements, which caused accessibility concerns. I replaced them with buttons to improve keyboard accessibility and remove accessibility warnings.
+## Observed Issues
 
-The first implementation also did not include automated tests. I requested React Testing Library test cases, verified them by running `npm test -- --watchAll=false`, and confirmed that all five tests passed successfully.
+### 1. Inconsistent UI
 
-I also refined the Forgot Password workflow through multiple iterations until it supported proper validation, password confirmation, navigation back to Login, and success messages.   
+The Login and Signup screens had different card heights and spacing, making the interface look inconsistent.
 
-Also I myself see the mistakes in UI so i give prompt to AI that: 
-The latest changes broke the original UI. Keep all authentication, validation, accessibility, and loading improvements, but restore the original visual design exactly as it was.
-Specifically:
+### 2. Scrollbar Appeared
 
-* Restore the original appearance of the thumbnail gallery (same size, spacing, rounded corners, hover effect, and active state as before).
-* Restore the original appearance of the password fields and eye icon.
-* The eye toggle should remain a `<button>` for accessibility, but it must look exactly like the previous clickable icon (no brown background, no full width, no extra padding).
-* Only the main Login, Signup, and Reset Password submit buttons should use the large brown button styling.
-* Thumbnail buttons should visually match the previous `<div class="thumb">` design.
-* Do not change the layout, colors, spacing, or animations unless required to restore the previous UI.
-* Preserve all functionality (localStorage authentication, loading states, accessibility improvements, timeout cleanup, validation, etc.).
-* Do not rewrite the entire file. Only update the CSS and any minimal JSX needed to restore the original appearance.
+The authentication card contained a vertical scrollbar even though the content should fit naturally inside the card.
 
-## Round 1 vs Round 2 Comparison
+### 3. Forgot Password Was Incomplete
 
-Round 1 was generated using a single, vague prompt and required minimal interaction. It produced a working Login and Signup interface with basic validation, but the Forgot Password link was not functional, authentication was simulated only with a timeout, and there were no automated tests.
+The "Forgot Password" text existed but clicking it did not open a reset password workflow.
 
-Round 2 used a detailed prompt with planning, implementation, verification, and multiple refinement steps. It introduced a complete Forgot Password workflow, confirm password validation, simulated authentication using localStorage, improved accessibility by replacing anchor tags with buttons, added screen-reader support and keyboard accessibility, improved error handling, loading states, success messages, and included five automated React Testing Library tests that all passed.
+### 4. No Password Confirmation
 
-Although Round 2 required more prompting and review time, it produced a more complete, maintainable, and accessible application while reducing manual debugging.
+Signup only asked for one password, increasing the possibility of user mistakes.
 
-## Iterations
-Round 1 was completed in a single AI prompt with almost no review.
+### 5. Basic Validation Only
 
-Round 2 required multiple iterations. I refined the Forgot Password workflow, requested updated components, fixed accessibility issues, replaced anchor elements with buttons, added automated tests, verified the tests, created documentation, and reviewed the final implementation before committing.
+Validation was limited and did not cover several common edge cases.
+
+### 6. No Loading Feedback
+
+Submitting forms showed no loading state, making the interface feel unresponsive.
+
+### 7. No Success Feedback
+
+Users received little visual confirmation after completing actions.
+
+### 8. No Automated Testing
+
+No React Testing Library tests were generated.
+
+### 9. Accessibility Problems
+
+Interactive text used non-semantic elements instead of accessible buttons.
+
+---
+
+# Round 2
+
+## Workflow
+
+Round 2 followed a structured AI development workflow.
+
+Instead of asking AI to simply generate code, the process included:
+
+1. Understanding the existing authentication component.
+2. Creating an implementation plan.
+3. Adding new functionality.
+4. Preserving existing behaviour.
+5. Improving accessibility.
+6. Adding automated tests.
+7. Running tests for verification.
+8. Reviewing the generated code.
+9. Refining the UI until it matched the original design.
+
+This resulted in a much more complete and reliable implementation.
+
+---
+
+# Improvements in Round 2
+
+## UI Improvements
+
+Compared to Round 1, several visual improvements were made.
+
+- Consistent card size across Login, Signup, and Reset Password screens.
+- Removed unnecessary scrolling inside the authentication card.
+- Better spacing between form fields.
+- Improved alignment throughout the interface.
+- More polished visual appearance.
+- Restored original thumbnail styling after accessibility changes.
+- Restored the original password field appearance while keeping accessible button elements.
+- Consistent styling across all authentication screens.
+
+---
+
+## Functional Improvements
+
+Round 2 introduced several new features.
+
+### Complete Forgot Password Workflow
+
+Users can now:
+
+- Open the Reset Password page.
+- Enter their email.
+- Enter a new password.
+- Confirm the new password.
+- Return to the Login screen.
+
+---
+
+### Improved Signup
+
+Signup now includes:
+
+- Confirm Password field
+- Password matching validation
+- Better error handling
+
+---
+
+### Better Validation
+
+Validation now handles:
+
+- Empty fields
+- Invalid email format
+- Password mismatch
+- Missing required values
+
+---
+
+### Simulated Authentication
+
+Authentication is now simulated using **localStorage**, allowing user registration and login without a backend.
+
+---
+
+### Loading States
+
+Buttons display loading states during simulated requests, improving user experience.
+
+---
+
+### Success and Error Messages
+
+Users receive clear feedback after successful or failed actions.
+
+---
+
+### Clickable Image Gallery
+
+Thumbnail images now correctly update the large preview image.
+
+---
+
+# Accessibility Improvements
+
+Round 2 also improves accessibility.
+
+Changes include:
+
+- Replaced clickable `<a>` elements with semantic `<button>` elements.
+- Better keyboard navigation.
+- Screen-reader friendly labels.
+- Appropriate ARIA attributes.
+- Proper autocomplete attributes.
+- Focus indicators.
+- Reduced accessibility warnings.
+
+---
+
+# Testing and Verification
+
+Unlike Round 1, Round 2 includes automated testing using **React Testing Library**.
+
+The following behaviours were verified:
+
+- Login renders by default.
+- Signup page opens correctly.
+- Signup returns to Login.
+- Forgot Password page opens.
+- Reset Password returns to Login.
+
+All tests passed successfully.
+
+---
+
+# AI Mistakes I Caught
+
+Although Round 2 produced significantly better results, it still required manual review.
+
+## 1. Accessibility Issues
+
+The AI initially used anchor elements for interactive actions.
+
+These were replaced with semantic buttons.
+
+---
+
+## 2. Missing Automated Tests
+
+The first implementation did not include tests.
+
+I requested React Testing Library tests and verified all of them manually.
+
+---
+
+## 3. Incomplete Forgot Password Workflow
+
+The initial implementation required additional prompting before it correctly handled:
+
+- Email validation
+- Password confirmation
+- Navigation
+- Success messages
+
+---
+
+## 4. UI Regression
+
+One iteration accidentally changed the original design.
+
+The updated code worked correctly, but:
+
+- Thumbnail buttons changed appearance.
+- Password eye icons became oversized.
+- Some spacing and styling differed from the original interface.
+
+I refined the prompts so the AI restored the original UI while preserving all functional and accessibility improvements.
+
+---
+
+# Round 1 vs Round 2
+
+| Feature | Round 1 | Round 2 |
+|----------|----------|----------|
+| Login | ✅ | ✅ |
+| Signup | ✅ | ✅ |
+| Forgot Password | ❌ | ✅ |
+| Confirm Password | ❌ | ✅ |
+| Validation | Basic | Complete |
+| localStorage Authentication | ❌ | ✅ |
+| Loading State | ❌ | ✅ |
+| Success Messages | ❌ | ✅ |
+| Clickable Thumbnails | ❌ | ✅ |
+| Accessibility Improvements | ❌ | ✅ |
+| Automated Tests | ❌ | ✅ |
+| UI Consistency | Basic | Improved |
+
+---
+
+# Review Effort
+
+Round 1 was quick to generate but required significant manual review and additional implementation work.
+
+Round 2 took longer because planning, testing, verification, and multiple refinement prompts were used. However, it reduced debugging time and produced a cleaner, more maintainable, accessible, and reliable application.
+
+---
+
+# Conclusion
+
+This assignment demonstrated that prompt quality has a significant impact on AI-generated code.
+
+Round 1 produced a basic implementation that required substantial manual improvements.
+
+Round 2 required more planning and refinement but generated a much more complete solution with improved UI consistency, accessibility, validation, testing, and maintainability.
+
+The additional effort spent designing better prompts ultimately reduced manual debugging and produced a higher-quality application.
+
+---
+
+# Iterations
+
+## Round 1
+
+- One AI prompt
+- Minimal review
+- No testing
+- Basic implementation
+
+---
+
+## Round 2
+
+Multiple iterations were performed:
+
+- Planned implementation before coding.
+- Added Forgot Password workflow.
+- Added Confirm Password validation.
+- Improved localStorage authentication.
+- Added loading states.
+- Improved validation.
+- Fixed accessibility issues.
+- Added automated tests.
+- Verified all tests.
+- Restored original UI after accessibility improvements.
+- Updated documentation.
+- Reviewed final implementation before committing.
+
+## Documentation
+
+- WORKFLOW.md → AI workflow comparison
+- CLAUDE.md → Project rules
